@@ -1,0 +1,23 @@
+/* Generic Styles */
+
+.row {
+  text-align: center;
+}
+
+/* Board Styles */
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Button Styles */
+
+#button-container {
+  margin-top: 15px;
+}
+
+/* Current Turn Styles */
