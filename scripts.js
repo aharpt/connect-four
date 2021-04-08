@@ -5,6 +5,23 @@
 // variable to keep track of whose turn it is
 let currentTurn = "";
 
+// board
+// Rules:
+// 1. 'C' no chip but cannot be modified
+// 2. 'O' no chip but can be modified
+// 3. 'R' Red chip and cannot be modified
+// 4. 'B' Black chip and cannot be modified
+let board = [
+  /* 1st column */["O", "C", "C", "C", "C", "C"],
+  /* 2nd column */["O", "C", "C", "C", "C", "C"],
+  /* 3rd column */["O", "C", "C", "C", "C", "C"],
+  /* 4th column */["O", "C", "C", "C", "C", "C"],
+  /* 5th column */["O", "C", "C", "C", "C", "C"],
+  /* 6th column */["O", "C", "C", "C", "C", "C"],
+  /* 7th column */["O", "C", "C", "C", "C", "C"],
+];
+
+
 // Deciding who starts
 let decideTurn = () => {
   let randomNumber = Math.floor(Math.random() * 2);
@@ -22,6 +39,27 @@ let decideTurn = () => {
 // changing turn
 let changeTurn = (playerTurn) => {
   document.getElementById("current-turn").innerText = playerTurn;
+};
+
+// iterate board
+let iterateBoard = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      console.log("At Position " + i + " " + j + ": " + board[i][j]);
+      let circles = document.querySelectorAll(".circle");
+      console.log(circles);
+    }
+  }
+};
+
+iterateBoard();
+
+// function to see which spots on board can be added to
+// @pre boardColumn: A column of the board to figure out which single spot can be added to
+// @post: Updates board with the spot that can be added to.
+let checkSpots = (boardColumn) => {
+  for (let i = boardColumn.length - 1; i >= 0; i--) {
+  }
 };
 
 /* Event handlers */
