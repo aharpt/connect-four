@@ -54,6 +54,19 @@ let iterateBoard = () => {
 
 iterateBoard();
 
+// clear tokens
+let clear = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (j === 0) {
+        board[i][j] = "O";
+      } else {
+        board[i][j] = "C";
+      }
+    }
+  }
+};
+
 // function to see which spots on board can be added to
 // @pre boardColumn: A column of the board to figure out which single spot can be added to
 // @post: Updates board with the spot that can be added to.
