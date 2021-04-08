@@ -23,11 +23,3 @@
   margin-top: 15px;
   display: block;
 }
-
-/* "Add Chip" button */
-
-.addChip {
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
