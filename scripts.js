@@ -1,6 +1,8 @@
 /* Game Code */
 
-// global code
+/* Global Code */
+
+// variable to keep track of whose turn it is
 let currentTurn = "";
 
 // Deciding who starts
