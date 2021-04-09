@@ -91,15 +91,23 @@ let clear = () => {
 
 // enable tile in the 2D-array 'board'
 let enableTile = () => {
+  let changedTiles = 0;
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] !== "O" && board[i][j] !== "C") {
-        board[i][j + 1] = "O";
-        return true;
-      }
-    }
+        if (board[i][j + 1] == "C") {
+          board[i][j + 1] = "O";
+          changedTiles++;
+        } // board[i][j + 1] if
+      } // board[i][j] if
+    } // j loop
+  } // i loop
+
+  if (changedTiles > 0) {
+    return true;
+  } else {
+    return false;
   }
-  return false;
 };
 
 // change tile board based off of change in board
@@ -110,7 +118,7 @@ let changeTileBoard = () => {
         if (board[i][j] == "O") {
           for (let k = 0; k < circles.length; k++) {
             if (circles[k].getAttribute("id") == (i + "" + j)) {
-              console.log((i + "" + j));
+              // console.log((i + "" + j));
               circles[k].setAttribute("class", "circle");
             } // circles[k] if
           } // k loop
@@ -118,17 +126,15 @@ let changeTileBoard = () => {
       } // j loop
     } // i loop
   } // enableTile() if
+
+  console.log(board);
 };
 
 /* Event handlers */
 
 // Clear Buttons Handler is Clicked
 document.getElementById("clear-tokens-button").addEventListener("click", function() {
-  let tokens = document.querySelectorAll(".circle");
-
-  for (let i = 0; i < tokens.length; i++) {
-    tokens[i].style.backgroundColor = "white";
-  }
+  window.location.reload();
 
   this.setAttribute("disabled", "true");
   document.getElementById("start-game-button").removeAttribute("disabled");
@@ -154,6 +160,7 @@ for (let i = 0; i < circles.length; i++) {
     if (currentTurn === "Red" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "red";
       changeTurn();
+      console.log("board[" + this.getAttribute("id")[0] + "][" + this.getAttribute("id")[1] + "] changed to 'R'");
       board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "R";
 
       // call function to remove greyedOut class from a tile
@@ -162,6 +169,7 @@ for (let i = 0; i < circles.length; i++) {
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
       changeTurn();
+      console.log("board[" + this.getAttribute("id")[0] + "][" + this.getAttribute("id")[1] + "] changed to 'B'");
       board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "B";
 
       // call function to remove greyedOut class from a tile
