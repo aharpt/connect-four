@@ -102,6 +102,23 @@ let enableTile = () => {
   return false;
 };
 
+// change tile board based off of change in board
+let changeTileBoard = () => {
+  if (enableTile()) {
+    for (let i = 0; i < board.length; i++) {
+      for (let j = 0; j < board[i].length; j++) {
+        if (board[i][j] == "O") {
+          for (let k = 0; k < circles.length; k++) {
+            if (circles[k].getAttribute("id") == (i + "" + j)) {
+              circles[k].setAttribute("class", "circle");
+            } // circles[k] if
+          } // k loop
+        } // board[i][j] if
+      } // j loop
+    } // i loop
+  } // enableTile() if
+};
+
 /* Event handlers */
 
 // Clear Buttons Handler is Clicked
