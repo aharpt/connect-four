@@ -89,12 +89,17 @@ let clear = () => {
   }
 };
 
-// function to see which spots on board can be added to
-// @pre boardColumn: A column of the board to figure out which single spot can be added to
-// @post: Updates board with the spot that can be added to.
-let checkSpots = (boardColumn) => {
-  for (let i = boardColumn.length - 1; i >= 0; i--) {
+// enable tile in the 2D-array 'board'
+let enableTile = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j - 1] !== "O" && board[i][j - 1] !== "C") {
+        board[i][j] = "O";
+        return true;
+      }
+    }
   }
+  return false;
 };
 
 /* Event handlers */
@@ -132,6 +137,8 @@ for (let i = 0; i < circles.length; i++) {
       this.style.backgroundColor = "red";
       changeTurn();
       board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "R";
+
+      // call function to remove greyedOut class from a tile
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
