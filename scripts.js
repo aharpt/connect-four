@@ -93,8 +93,8 @@ let clear = () => {
 let enableTile = () => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j - 1] !== "O" && board[i][j - 1] !== "C") {
-        board[i][j] = "O";
+      if (board[i][j] !== "O" && board[i][j] !== "C") {
+        board[i][j + 1] = "O";
         return true;
       }
     }
@@ -110,6 +110,7 @@ let changeTileBoard = () => {
         if (board[i][j] == "O") {
           for (let k = 0; k < circles.length; k++) {
             if (circles[k].getAttribute("id") == (i + "" + j)) {
+              console.log((i + "" + j));
               circles[k].setAttribute("class", "circle");
             } // circles[k] if
           } // k loop
@@ -156,11 +157,15 @@ for (let i = 0; i < circles.length; i++) {
       board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "R";
 
       // call function to remove greyedOut class from a tile
+      changeTileBoard();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
       changeTurn();
       board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "B";
+
+      // call function to remove greyedOut class from a tile
+      changeTileBoard();
     }
   });
 }
