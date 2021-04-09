@@ -131,9 +131,14 @@ for (let i = 0; i < circles.length; i++) {
     if (currentTurn === "Red" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "red";
       changeTurn();
+      board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "R";
+      console.log(board);
+
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
       changeTurn();
+      board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "B";
+      console.log(board);
     }
   });
 }
