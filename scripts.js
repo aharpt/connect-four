@@ -40,8 +40,14 @@ let decideTurn = () => {
 };
 
 // changing turn
-let changeTurn = (playerTurn) => {
-  document.getElementById("current-turn").innerText = playerTurn;
+let changeTurn = () => {
+  if (currentTurn === "Red") {
+    currentTurn = "Black";
+  } else if (currentTurn === "Black") {
+    currentTurn = "Red";
+  }
+
+  document.getElementById("current-turn").innerText = currentTurn;
 };
 
 // iterate board
@@ -54,8 +60,6 @@ let iterateBoard = () => {
     }
   }
 };
-
-iterateBoard();
 
 // disable tiles
 let disableTiles = () => {
@@ -71,8 +75,6 @@ let disableTiles = () => {
     } // j loop
   } // i loop
 };
-
-disableTiles();
 
 // clear tokens
 let clear = () => {
@@ -115,16 +117,23 @@ document.getElementById("start-game-button").addEventListener("click", function(
   this.setAttribute("disabled", "true");
   document.getElementById("clear-tokens-button").removeAttribute("disabled");
 
+  // decide starting player
   decideTurn();
+
+  // disable tiles that cannot be placed on
+  disableTiles();
 });
 
 // click handler when a tile is clicked
-document.getElementById("00").addEventListener("click", function() {
-  if (currentTurn === "Red") {
-    this.style.backgroundColor = "red";
-    changeTurn("Black");
-  } else if (currentTurn === "Black") {
-    this.style.backgroundColor = "black";
-    changeTurn("Red");
-  }
-});
+
+for (let i = 0; i < circles.length; i++) {
+  circles[i].addEventListener("click", function() {
+    if (currentTurn === "Red" && !(this.classList.contains("greyedOut"))) {
+      this.style.backgroundColor = "red";
+      changeTurn();
+    } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
+      this.style.backgroundColor = "black";
+      changeTurn();
+    }
+  });
+}
