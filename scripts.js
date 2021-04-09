@@ -21,6 +21,9 @@ let board = [
   /* 7th column */["O", "C", "C", "C", "C", "C"],
 ];
 
+// all circles
+let circles = document.querySelectorAll(".circle");
+
 
 // Deciding who starts
 let decideTurn = () => {
@@ -46,13 +49,30 @@ let iterateBoard = () => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       console.log("At Position " + i + " " + j + ": " + board[i][j]);
-      let circles = document.querySelectorAll(".circle");
+      // circles[i + j].setAttribute("id", i + "-" + j);
       console.log(circles);
     }
   }
 };
 
 iterateBoard();
+
+// disable tiles
+let disableTiles = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === "C") {
+        for (let k = 0; k < circles.length; k++) {
+          if (circles[k].getAttribute("id") === (i + "" + j)) {
+            circles[k].classList += " greyedOut";
+          } // circles if
+        } // k loop
+      } // board if
+    } // j loop
+  } // i loop
+};
+
+disableTiles();
 
 // clear tokens
 let clear = () => {
