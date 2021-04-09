@@ -117,3 +117,14 @@ document.getElementById("start-game-button").addEventListener("click", function(
 
   decideTurn();
 });
+
+// click handler when a tile is clicked
+document.getElementById("00").addEventListener("click", function() {
+  if (currentTurn === "Red") {
+    this.style.backgroundColor = "red";
+    changeTurn("Black");
+  } else if (currentTurn === "Black") {
+    this.style.backgroundColor = "black";
+    changeTurn("Red");
+  }
+});
