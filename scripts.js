@@ -130,6 +130,27 @@ let changeTileBoard = () => {
   console.log(board);
 };
 
+// WINNING CONDITIONS
+
+// helper function
+let changeContainerHTML = (color) => {
+  document.querySelector(".container").innerHTML = "<h2> " + color + " Wins</h2>";
+};
+
+let horizontalWin = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      // check for red
+      if ((board[i][j] === "R") && (board[i + 1][j] === "R") && (board[i + 2][j] === "R") && (board[i + 3][j] === "R")) {
+        setTimeout(changeContainerHTML, 500, "Red");
+      } else if ((board[i][j] === "B") && (board[i + 1][j] === "B") && (board[i + 2][j] === "B") && (board[i + 3][j] === "B")) {
+        setTimeout(changeContainerHTML, 500, "Black");
+      }// board[i][j] if
+    } // j loop
+  } // i loop
+
+};
+
 /* Event handlers */
 
 // Clear Buttons Handler is Clicked
@@ -165,6 +186,8 @@ for (let i = 0; i < circles.length; i++) {
 
       // call function to remove greyedOut class from a tile
       changeTileBoard();
+      // check horizontal win condition
+      horizontalWin();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
@@ -174,6 +197,8 @@ for (let i = 0; i < circles.length; i++) {
 
       // call function to remove greyedOut class from a tile
       changeTileBoard();
+      // check horizontal win condition
+      horizontalWin();
     }
   });
 }
