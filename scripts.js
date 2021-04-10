@@ -142,9 +142,9 @@ let horizontalWin = () => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       // check for red
-      if ((board[i][j] === "R") && (board[i + 1][j] === "R") && (board[i + 2][j] === "R") && (board[i + 3][j] === "R")) {
+      if ((i < 4) && (board[i][j] === "R") && (board[i + 1][j] === "R") && (board[i + 2][j] === "R") && (board[i + 3][j] === "R")) {
         setTimeout(changeContainerHTML, 500, "Red");
-      } else if ((board[i][j] === "B") && (board[i + 1][j] === "B") && (board[i + 2][j] === "B") && (board[i + 3][j] === "B")) {
+      } else if ((i < 4) && (board[i][j] === "B") && (board[i + 1][j] === "B") && (board[i + 2][j] === "B") && (board[i + 3][j] === "B")) {
         setTimeout(changeContainerHTML, 500, "Black");
       }// board[i][j] if
     } // j loop
@@ -166,12 +166,25 @@ let verticalWin = () => {
 };
 
 // win diagonally
+
 let diagonalWin1 = () => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if ((board[i][j] === "R") && (board[i + 1][j + 1] === "R") && (board[i + 2][j + 2] === "R") && (board[i + 3][j + 3] === "R")) {
         setTimeout(changeContainerHTML, 500, "Red");
       } else if ((board[i][j] === "B") && (board[i + 1][j + 1] === "B") && (board[i + 2][j + 2] === "B") && (board[i + 3][j + 3] === "B")) {
+        setTimeout(changeContainerHTML, 500, "Black");
+      } // else if
+    } // j loop
+  } // i loop
+};
+
+let diagonalWin2 = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if ((i > 2) && (j < 4) && (board[i][j] === "R") && (board[i - 1][j + 1] === "R") && (board[i - 2][j + 2] === "R") && (board[i - 3][j + 3] === "R")) {
+        setTimeout(changeContainerHTML, 500, "Red");
+      } else if ((board[i][j] === "B") && (board[i - 1][j + 1] === "B") && (board[i - 2][j + 2] === "B") && (board[i - 3][j + 3] === "B")) {
         setTimeout(changeContainerHTML, 500, "Black");
       } // else if
     } // j loop
@@ -216,9 +229,10 @@ for (let i = 0; i < circles.length; i++) {
       // check horizontal win condition
       horizontalWin();
       // check vertical win condition
-      verticalWin();
-      // check diagonal win
-      diagonalWin1();
+      // verticalWin();
+      // // check diagonal win
+      // diagonalWin1();
+      // diagonalWin2();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
@@ -231,9 +245,10 @@ for (let i = 0; i < circles.length; i++) {
       // check horizontal win condition
       horizontalWin();
       // check vertical win condition
-      verticalWin();
-      // check diagonal win
-      diagonalWin1();
+      // verticalWin();
+      // // check diagonal win
+      // diagonalWin1();
+      // diagonalWin2();
     }
 
     console.log(this.getAttribute("id"));
