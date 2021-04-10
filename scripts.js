@@ -170,9 +170,9 @@ let verticalWin = () => {
 let diagonalWin1 = () => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if ((board[i][j] === "R") && (board[i + 1][j + 1] === "R") && (board[i + 2][j + 2] === "R") && (board[i + 3][j + 3] === "R")) {
+      if ((i < 4) && (j < 4) && (board[i][j] === "R") && (board[i + 1][j + 1] === "R") && (board[i + 2][j + 2] === "R") && (board[i + 3][j + 3] === "R")) {
         setTimeout(changeContainerHTML, 500, "Red");
-      } else if ((board[i][j] === "B") && (board[i + 1][j + 1] === "B") && (board[i + 2][j + 2] === "B") && (board[i + 3][j + 3] === "B")) {
+      } else if ((i < 4) && (j < 4) && (board[i][j] === "B") && (board[i + 1][j + 1] === "B") && (board[i + 2][j + 2] === "B") && (board[i + 3][j + 3] === "B")) {
         setTimeout(changeContainerHTML, 500, "Black");
       } // else if
     } // j loop
@@ -231,7 +231,7 @@ for (let i = 0; i < circles.length; i++) {
       // check vertical win condition
       verticalWin();
       // // check diagonal win
-      // diagonalWin1();
+      diagonalWin1();
       // diagonalWin2();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
@@ -247,7 +247,7 @@ for (let i = 0; i < circles.length; i++) {
       // check vertical win condition
       verticalWin();
       // // check diagonal win
-      // diagonalWin1();
+      diagonalWin1();
       // diagonalWin2();
     }
 
