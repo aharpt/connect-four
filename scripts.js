@@ -137,6 +137,7 @@ let changeContainerHTML = (color) => {
   document.querySelector(".container").innerHTML = "<h2> " + color + " Wins</h2>";
 };
 
+// win horizontally
 let horizontalWin = () => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -149,6 +150,19 @@ let horizontalWin = () => {
     } // j loop
   } // i loop
 
+};
+
+// win vertically
+let verticalWin = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if ((board[i][j] === "R") && (board[i][j + 1] === "R") && (board[i][j + 2] === "R") && (board[i][j + 3] === "R")) {
+        setTimeout(changeContainerHTML, 500, "Red");
+      } else if ((board[i][j] === "B") && (board[i][j + 1] === "B") && (board[i][j + 2] === "B") && (board[i][j + 3] === "B")) {
+        setTimeout(changeContainerHTML, 500, "Black");
+      } // else if
+    } // j loop
+  } // i loop
 };
 
 /* Event handlers */
@@ -188,6 +202,8 @@ for (let i = 0; i < circles.length; i++) {
       changeTileBoard();
       // check horizontal win condition
       horizontalWin();
+      // check vertical win condition
+      verticalWin();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
@@ -199,6 +215,8 @@ for (let i = 0; i < circles.length; i++) {
       changeTileBoard();
       // check horizontal win condition
       horizontalWin();
+      // check vertical win condition
+      verticalWin();
     }
   });
 }
