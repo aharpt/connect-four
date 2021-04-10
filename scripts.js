@@ -166,7 +166,7 @@ let verticalWin = () => {
 };
 
 // win diagonally
-let diagonalWin = () => {
+let diagonalWin1 = () => {
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
       if ((board[i][j] === "R") && (board[i + 1][j + 1] === "R") && (board[i + 2][j + 2] === "R") && (board[i + 3][j + 3] === "R")) {
@@ -218,7 +218,7 @@ for (let i = 0; i < circles.length; i++) {
       // check vertical win condition
       verticalWin();
       // check diagonal win
-      diagonalWin();
+      diagonalWin1();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
@@ -233,7 +233,7 @@ for (let i = 0; i < circles.length; i++) {
       // check vertical win condition
       verticalWin();
       // check diagonal win
-      diagonalWin();
+      diagonalWin1();
     }
 
     console.log(this.getAttribute("id"));
