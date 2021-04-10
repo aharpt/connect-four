@@ -184,7 +184,7 @@ let diagonalWin2 = () => {
     for (let j = 0; j < board[i].length; j++) {
       if ((i > 2) && (j < 4) && (board[i][j] === "R") && (board[i - 1][j + 1] === "R") && (board[i - 2][j + 2] === "R") && (board[i - 3][j + 3] === "R")) {
         setTimeout(changeContainerHTML, 500, "Red");
-      } else if ((board[i][j] === "B") && (board[i - 1][j + 1] === "B") && (board[i - 2][j + 2] === "B") && (board[i - 3][j + 3] === "B")) {
+      } else if ((i > 2) && (j < 4) && (board[i][j] === "B") && (board[i - 1][j + 1] === "B") && (board[i - 2][j + 2] === "B") && (board[i - 3][j + 3] === "B")) {
         setTimeout(changeContainerHTML, 500, "Black");
       } // else if
     } // j loop
@@ -232,7 +232,7 @@ for (let i = 0; i < circles.length; i++) {
       verticalWin();
       // // check diagonal win
       diagonalWin1();
-      // diagonalWin2();
+      diagonalWin2();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
@@ -248,7 +248,7 @@ for (let i = 0; i < circles.length; i++) {
       verticalWin();
       // // check diagonal win
       diagonalWin1();
-      // diagonalWin2();
+      diagonalWin2();
     }
 
     // console.log(this.getAttribute("id"));
