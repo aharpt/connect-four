@@ -28,7 +28,7 @@ let circles = document.querySelectorAll(".circle");
 // Deciding who starts
 let decideTurn = () => {
   let randomNumber = Math.floor(Math.random() * 2);
-  console.log(randomNumber);
+  // console.log(randomNumber);
 
   if (randomNumber == 0) {
     currentTurn = "Red";
@@ -165,6 +165,19 @@ let verticalWin = () => {
   } // i loop
 };
 
+// win diagonally
+let diagonalWin = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if ((board[i][j] === "R") && (board[i + 1][j + 1] === "R") && (board[i + 2][j + 2] === "R") && (board[i + 3][j + 3] === "R")) {
+        setTimeout(changeContainerHTML, 500, "Red");
+      } else if ((board[i][j] === "B") && (board[i + 1][j + 1] === "B") && (board[i + 2][j + 2] === "B") && (board[i + 3][j + 3] === "B")) {
+        setTimeout(changeContainerHTML, 500, "Black");
+      } // else if
+    } // j loop
+  } // i loop
+};
+
 /* Event handlers */
 
 // Clear Buttons Handler is Clicked
@@ -195,7 +208,7 @@ for (let i = 0; i < circles.length; i++) {
     if (currentTurn === "Red" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "red";
       changeTurn();
-      console.log("board[" + this.getAttribute("id")[0] + "][" + this.getAttribute("id")[1] + "] changed to 'R'");
+      // console.log("board[" + this.getAttribute("id")[0] + "][" + this.getAttribute("id")[1] + "] changed to 'R'");
       board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "R";
 
       // call function to remove greyedOut class from a tile
@@ -204,11 +217,13 @@ for (let i = 0; i < circles.length; i++) {
       horizontalWin();
       // check vertical win condition
       verticalWin();
+      // check diagonal win
+      diagonalWin();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
       changeTurn();
-      console.log("board[" + this.getAttribute("id")[0] + "][" + this.getAttribute("id")[1] + "] changed to 'B'");
+      // console.log("board[" + this.getAttribute("id")[0] + "][" + this.getAttribute("id")[1] + "] changed to 'B'");
       board[this.getAttribute("id")[0]][this.getAttribute("id")[1]] = "B";
 
       // call function to remove greyedOut class from a tile
@@ -217,6 +232,10 @@ for (let i = 0; i < circles.length; i++) {
       horizontalWin();
       // check vertical win condition
       verticalWin();
+      // check diagonal win
+      diagonalWin();
     }
+
+    console.log(this.getAttribute("id"));
   });
 }
