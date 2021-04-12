@@ -191,6 +191,18 @@ let diagonalWin2 = () => {
   } // i loop
 };
 
+let diagonalWin3 = () => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if ((i < 4) && (j > 2) && (board[i][j] === "R") && (board[i + 1][j - 1] === "R") && (board[i + 2][j - 2] === "R") && (board[i + 3][j - 3] === "R")) {
+        setTimeout(changeContainerHTML, 500, "Red");
+      } else if ((i < 4) && (j < 4) && (board[i][j] === "B") && (board[i + 1][j - 1] === "B") && (board[i + 2][j - 2] === "B") && (board[i + 3][j - 3] === "B")) {
+        setTimeout(changeContainerHTML, 500, "Black");
+      } // else if
+    } // j loop
+  } // i loop
+};
+
 /* Event handlers */
 
 // Clear Buttons Handler is Clicked
@@ -233,6 +245,7 @@ for (let i = 0; i < circles.length; i++) {
       // // check diagonal win
       diagonalWin1();
       diagonalWin2();
+      diagonalWin3();
 
     } else if (currentTurn === "Black" && !(this.classList.contains("greyedOut"))) {
       this.style.backgroundColor = "black";
@@ -249,6 +262,7 @@ for (let i = 0; i < circles.length; i++) {
       // // check diagonal win
       diagonalWin1();
       diagonalWin2();
+      diagonalWin3();
     }
 
     // console.log(this.getAttribute("id"));
