@@ -266,8 +266,6 @@ document.addEventListener("DOMContentLoaded", function() {
         diagonalWin2();
         diagonalWin3();
       }
-
-      // console.log(this.getAttribute("id"));
     });
   }
 });
