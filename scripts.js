@@ -221,6 +221,8 @@ document.addEventListener("DOMContentLoaded", function() {
     this.setAttribute("disabled", "true");
     document.getElementById("clear-tokens-button").removeAttribute("disabled");
 
+    alert("Please click on one of the available board spaces to place a token.");
+
     // decide starting player
     decideTurn();
 
