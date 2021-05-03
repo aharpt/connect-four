@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
       } // i loop
     } // enableTile() if
 
-    console.log(board);
+    // console.log(board);
   };
 
   // WINNING CONDITIONS
